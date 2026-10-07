@@ -3,7 +3,7 @@ import { signUp } from "@/lib/auth-client";
 import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 
 const SignUpPage = () => {
-    const onSubmit = async (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries())
@@ -14,7 +14,7 @@ const SignUpPage = () => {
             password: data.password
         })
         if (error) {
-            console.error("Sign up error:", error);
+            console.log("Sign up error:", error);
             return;
         }
 
