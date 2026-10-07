@@ -10,7 +10,8 @@ const SingInPage = () => {
 
         const { data: resData, error } = await signIn.email({
             email: data.email,
-            password: data.password
+            password: data.password,
+            remember: true
         })
         console.log(resData, error, 'authorized data')
 
