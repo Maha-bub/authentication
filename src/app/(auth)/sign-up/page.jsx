@@ -1,9 +1,11 @@
 "use client";
 import { signUp } from "@/lib/auth-client";
-import { Button, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
+import { Eye, EyeSlash } from "@gravity-ui/icons";
+import { Button, Description, FieldError, Form, Input, InputGroup, Label, TextField } from "@heroui/react";
+import { useState } from "react";
 
 const SignUpPage = () => {
-    const onSubmit = async(e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries())
@@ -20,6 +22,7 @@ const SignUpPage = () => {
 
         console.log("user created successfully:", restData);
     };
+    const [isVisible, setIsVisible] = useState(false);
 
     return (
         <div>
@@ -54,29 +57,66 @@ const SignUpPage = () => {
                     <Input placeholder="Enter your email" />
                     <FieldError />
                 </TextField>
+
+
                 <TextField
+                    className="w-full max-w-[280px]"
                     isRequired
-                    minLength={8}
                     name="password"
-                    type="password"
+                    type={isVisible ? "text" : "password"}
+                    minLength={8}
                     validate={(value) => {
                         if (value.length < 8) {
                             return "Password must be at least 8 characters";
                         }
+
                         if (!/[A-Z]/.test(value)) {
                             return "Password must contain at least one uppercase letter";
                         }
+
                         if (!/[0-9]/.test(value)) {
                             return "Password must contain at least one number";
                         }
+
                         return null;
                     }}
                 >
                     <Label>Password</Label>
-                    <Input placeholder="Enter your password" />
-                    <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
+
+                    <InputGroup>
+                        <InputGroup.Input
+                            placeholder="Enter your password"
+                            className="w-full"
+                        />
+
+                        <InputGroup.Suffix className="pe-0">
+                            <Button
+                                isIconOnly
+                                type="button"
+                                aria-label={
+                                    isVisible ? "Hide password" : "Show password"
+                                }
+                                size="sm"
+                                variant="ghost"
+                                onPress={() => setIsVisible(!isVisible)}
+                            >
+                                {isVisible ? (
+                                    <Eye className="size-4" />
+                                ) : (
+                                    <EyeSlash className="size-4" />
+                                )}
+                            </Button>
+                        </InputGroup.Suffix>
+                    </InputGroup>
+
+                    <Description>
+                        Must be at least 8 characters with 1 uppercase letter
+                        and 1 number.
+                    </Description>
+
                     <FieldError />
                 </TextField>
+
                 <div className="flex gap-2">
                     <Button type="submit">
                         {/* <Check /> */}
