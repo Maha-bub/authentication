@@ -36,7 +36,7 @@ const SignUpPage = () => {
                     }}
                 >
                     <Label>Name</Label>
-                    <Input placeholder="John Doe" />
+                    <Input placeholder="Enter a name" />
                     <FieldError />
                 </TextField>
                 <TextField
@@ -51,7 +51,7 @@ const SignUpPage = () => {
                     }}
                 >
                     <Label>Email</Label>
-                    <Input placeholder="john@example.com" />
+                    <Input placeholder="Enter your email" />
                     <FieldError />
                 </TextField>
                 <TextField
