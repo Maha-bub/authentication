@@ -17,20 +17,20 @@ export default function Navbar() {
     }
     const navLinks = <>
         <li>
-            <Link href="#" className="block py-2">
-                Features
+            <Link href="/services" className="block py-2">
+                Services
             </Link>
         </li>
         <li>
-            <Link href="#" className="block py-2 font-medium text-accent">
+            <Link href="/dashboard" className="block py-2 font-medium text-accent">
                 Dashboard
             </Link>
         </li>
-        <li>
-            <Link href="#" className="block py-2">
-                Pricing
+        {session?.user && <li>
+            <Link href="profile" className="block py-2">
+                Profile
             </Link>
-        </li>
+        </li>}
     </>
     const navAuthBtns = <>
         {session?.user ? <>
@@ -67,6 +67,7 @@ export default function Navbar() {
                                     d="M6 18L18 6M6 6l12 12"
                                 />
                             ) : (
+
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
@@ -78,7 +79,7 @@ export default function Navbar() {
                     </button>
                     <div className="flex items-center gap-3">
                         {/* <Logo /> */}
-                        <p className="font-bold">ACME</p>
+                        <Link href="/" className="font-bold">ACME</Link>
                     </div>
                 </div>
                 <ul className="hidden items-center gap-4 md:flex">

@@ -25,12 +25,17 @@ const SignUpPage = () => {
         console.log("user created successfully:", restData);
     };
 
-    const handleSocialSignIn = async () => {
+    const handleGoogleSignIn = async () => {
         const resData = await signIn.social({
             provider: 'google'
 
         })
         console.log(resData)
+    }
+    const handleGitHubSignIn=async()=>{
+        const resData=await signIn.social({
+            provider:'github'
+        })
     }
     const [isVisible, setIsVisible] = useState(false);
 
@@ -143,9 +148,16 @@ const SignUpPage = () => {
                 <Button
                     className="w-full text-black"
                     variant="tertiary"
-                    onClick={() => handleSocialSignIn()}>
+                    onClick={() => handleGoogleSignIn()}>
                     <Icon icon="devicon:google" />
                     Sign in with Google
+                </Button>
+                <Button
+                    className="w-full text-black"
+                    variant="tertiary"
+                    onClick={() => handleGitHubSignIn()}>
+                    <Icon icon="devicon:github" />
+                    Sign in with GitHub
                 </Button>
             </Form>
         </div>
